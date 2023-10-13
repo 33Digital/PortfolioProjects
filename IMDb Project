@@ -11,13 +11,13 @@ ALTER TABLE IMDBTop250MoviesCleanedIMDBTop250Movies
 RENAME TO Movies;
 
     --Analyzing Budget and Revenue
-  /*Find the top 5 movies with the higest budgets*/
+  /*Find the top 5 movies with the highest budgets*/
 
 SELECT name, budget
 FROM Movies
 ORDER BY budget DESC LIMIT 5;
 
-  /*Some of the movies in the list are foreign movies, so it is appropriate to adjust the budgets for non-USD currencies by converting their nudget to the approximate USD value.
+  /*Some of the movies in the list are foreign movies, so it is appropriate to identify and adjust the budgets for non-USD currencies by converting their budget to the approximate USD value.
   Princess Mononoke and 3 Idiots have foreign currencies on their budget.*/
 
 --Princess Mononoke Movie Update 
