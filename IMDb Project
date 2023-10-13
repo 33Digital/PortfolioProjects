@@ -61,15 +61,9 @@ LIMIT 10;
 
     --Identifying Popular Genres
   /*Find the most popular genre in the dataset.*/
-
-SELECT genre, COUNT(*) as genre_count
-FROM (
-  	SELECT TRIM(value) as genre
-  	FROM Movies CROSS JOIN json_each('["' || REPLACE(genre, ',', '","') || '"]')
-  )
-  GROUP BY genre
-  ORDER BY genre_count DESC
-  LIMIT 5;
+/*json_each is used to split the comma-separated genre values into individual rows
+REPLACE(genre, ', ', '","') is used to format the genres into a valid JSON array.
+TRIM(value) is applied to remove any leading or trailing whitespaces from each genre.*/
 
     --Directors with Most Movies
   /*Discover the top 10 directors with the most movies.*/
@@ -95,7 +89,7 @@ order by total DESC
  ORDER BY COUNT(year) DESC
  Limit 10
 
-    */How many movies in each decade*/
+    /*How many movies in each decade*/
 
 SELECT 
     year/10 * 10 + 1 as decade_start,
@@ -105,7 +99,7 @@ FROM  Movies
 GROUP BY year/10 
 ORDER BY decade_start
 
-**for visualization purposes it makes sense to keep the decade in one column so combining them utilizing the concat function gives us that ability 
+/*for visualization purposes it makes sense to keep the decade in one column so combining them utilizing the concat function gives us that ability*/
 
 SELECT
     decade_start || ' - ' || decade_end as decade,
@@ -147,7 +141,7 @@ FROM decade_max_genre
 WHERE rn = 1
 ORDER BY decade_start
 
-** as with the previous query for visualization purposes lets combine the decade_start and decade_end into 1 column 
+/*as with the previous query for visualization purposes lets combine the decade_start and decade_end into 1 column*/
 
 WITH genre_counts AS (
   SELECT genre, COUNT(*) AS genre_count, year
