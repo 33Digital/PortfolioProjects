@@ -31,10 +31,12 @@ UPDATE Movies
 SET budget = REPLACE(budget, 550000000, 6700000);
 
     --Final Updated Results
+    /*I used WHERE clause to filter results*/
 
 SELECT name, budget
 FROM Movies
-ORDER BY budget DESC LIMIT 5;
+WHERE name IN ('3 Idiots', 'Princess Mononoke')
+ORDER BY budget DESC 
 
     --Exploring Top Movies
   /*Find the top 5 highest-rated movies*/
